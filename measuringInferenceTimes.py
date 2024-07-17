@@ -126,6 +126,9 @@ for i in range(len(allModels)):
         print(key, ": ", results[key][i])
     print('\n')
 
+results_dir = pathlib.Path("./results")
+results_dir.mkdir(exist_ok=True, parents=True)
+
 for key in results:
     means = [x[0] for x in results[key]]
     errors = [x[1] for x in results[key]]
@@ -155,5 +158,6 @@ for key in results:
 
     plt.tight_layout()
 
+    plt.savefig(f'./results/{key}.png')
     # Show the plot
     plt.show()
