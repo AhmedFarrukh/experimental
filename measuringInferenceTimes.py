@@ -27,7 +27,7 @@ def parse_benchmark_output(output):
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): (\d+), Inference \(avg\): (\d+)'),
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): ([\d.e+]+), Inference \(avg\): (\d+)')
     ]
-    memory_pattern = [
+    memory_patterns = [
         re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+.\d+) overall=(\d+.\d+)'),
         re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+) overall=(\d+.\d+)'),
         re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+.\d+) overall=(\d+)'),
