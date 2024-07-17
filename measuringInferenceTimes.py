@@ -21,13 +21,18 @@ def parse_benchmark_output(output):
 
     # Regular expressions to match the required information
     model_name_pattern = re.compile(r'INFO: Graph: \[(.*)\]')
-    init_time_pattern = re.compile(r'INFO: Initialized session in (\d+.\d+)ms.')
+    init_time_patterns = re.compile(r'INFO: Initialized session in (\d+.\d+)ms.')
     inference_patterns = [
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): (\d+.\d+), Inference \(avg\): (\d+.\d+)'),
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): (\d+), Inference \(avg\): (\d+)'),
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): ([\d.e+]+), Inference \(avg\): (\d+)')
     ]
-    memory_pattern = re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+.\d+) overall=(\d+.\d+)')
+    memory_pattern = [
+        re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+.\d+) overall=(\d+.\d+)'),
+        re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+) overall=(\d+.\d+)'),
+        re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+.\d+) overall=(\d+)'),
+        re.compile(r'INFO: Memory footprint delta from the start of the tool \(MB\): init=(\d+) overall=(\d+)')
+    ]
 
     current_model = None
 
@@ -58,12 +63,14 @@ def parse_benchmark_output(output):
                 break
 
         # Match the memory footprint
-        memory_match = memory_pattern.search(line)
-        if memory_match and current_model:
-            results[current_model]['Memory Footprint (MB)'] = {
-                'Init': float(memory_match.group(1)),
-                'Overall': float(memory_match.group(2))
-            }
+        for pattern in memory_patterns:
+            memory_match = pattern.search(line)
+            if memory_match and current_model:
+                results[current_model]['Memory Footprint (MB)'] = {
+                    'Init': float(memory_match.group(1)),
+                    'Overall': float(memory_match.group(2))
+                }
+            break
 
     return results
 
