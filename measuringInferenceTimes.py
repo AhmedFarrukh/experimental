@@ -21,7 +21,7 @@ def parse_benchmark_output(output):
 
     # Regular expressions to match the required information
     model_name_pattern = re.compile(r'INFO: Graph: \[(.*)\]')
-    init_time_patterns = re.compile(r'INFO: Initialized session in (\d+.\d+)ms.')
+    init_time_pattern = re.compile(r'INFO: Initialized session in (\d+.\d+)ms.')
     inference_patterns = [
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): (\d+.\d+), Inference \(avg\): (\d+.\d+)'),
         re.compile(r'INFO: Inference timings in us: Init: (\d+), First inference: (\d+), Warmup \(avg\): (\d+), Inference \(avg\): (\d+)'),
