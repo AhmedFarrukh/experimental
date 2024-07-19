@@ -50,10 +50,10 @@ def inference(model_path, modelName):
 
     return correct_predictions / total_predictions
 
-modelNames = ["MobileNet", "ResNet50", "ResNet101", "InceptionV3", "VGG16", "VGG19", "ResNet152"]
+modelNames = ["MobileNet"]
 for modelName in modelNames:
     accuracy = inference("./tflite_models/" + modelName + ".tflite", modelName)
     print(f"{modelName}: {accuracy:.2%}")
-    quant_accuracy = inference("./tflite_models/" + modelName + "_quant.tflite", modelName)
-    print(f"{modelName} Quantized: {quant_accuracy:.2%}")
+    #quant_accuracy = inference("./tflite_models/" + modelName + "_quant.tflite", modelName)
+    #print(f"{modelName} Quantized: {quant_accuracy:.2%}")
 
