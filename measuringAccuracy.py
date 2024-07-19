@@ -36,7 +36,7 @@ def inference(model_path, modelName):
     interpreter.set_tensor(input_index, image)
     interpreter.invoke()
     predictions = interpreter.get_tensor(output_index)
-    if class_index[str(np.argmax(predictions[0]))][0] == label.numpy()[0]:
+    if np.argmax(predictions[0]) == label.numpy()[0]:
       correct_predictions += 1
     total_predictions += 1
 
