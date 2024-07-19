@@ -38,11 +38,15 @@ def inference(model_path, modelName):
     ds_processed = ds.map(preprocess, num_parallel_calls=tf.data.experimental.AUTOTUNE).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)
 
     for images, labels in ds_processed:
-        interpreter.set_tensor(input_index, images.numpy())
-        interpreter.invoke()
-        predictions = interpreter.get_tensor(output_index)
-        correct_predictions += np.sum(np.argmax(predictions, axis=1) == labels.numpy())
-        total_predictions += labels.shape[0]
+        for i in range(images.shape[0]):
+            single_image = np.expand_dims(images.numpy()[i], axis=0)
+            single_label = labels.numpy()[i]
+            interpreter.set_tensor(input_index, single_image)
+            interpreter.invoke()
+            predictions = interpreter.get_tensor(output_index)
+            if np.argmax(predictions[0]) == single_label:
+                correct_predictions += 1
+            total_predictions += 1
 
     return correct_predictions / total_predictions
 
