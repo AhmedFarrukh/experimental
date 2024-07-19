@@ -41,7 +41,7 @@ def inference(model_path, modelName):
     total_predictions += 1
 
   return correct_predictions/total_predictions
-
+modelNames = ["MobileNet", "ResNet50", "ResNet101", "InceptionV3", "VGG16", "VGG19", "ResNet152"]
 for modelName in modelNames:
   print(modelName + ": ", inference("./tflite_models/" + modelName +".tflite", modelName))
   print(modelName + " Quantized: ", inference("./tflite_models/" + modelName +"_quant.tflite", modelName))
