@@ -92,8 +92,8 @@ for modelName in allModels:
   memory_init = []
   memory_overall = []
   for i in range(n):
-    outputOriginal = subprocess.check_output("./benchmark/linux_aarch64_benchmark_model \
-      --graph=./tflite_models/" + modelName +".tflite"+" \
+    outputOriginal = subprocess.check_output("/root/benchmark/linux_aarch64_benchmark_model \
+      --graph=/root/tflite_models/" + modelName +".tflite"+" \
       --num_threads=1", shell=True)
     outputOriginal = outputOriginal.decode('utf-8')
     output = parse_benchmark_output(outputOriginal)
