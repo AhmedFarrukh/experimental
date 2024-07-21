@@ -125,7 +125,7 @@ for i in range(len(allModels)):
         print(key, ": ", results[key][i])
     print('\n')
 
-results_dir = pathlib.Path("./results")
+results_dir = pathlib.Path("/root/results")
 results_dir.mkdir(exist_ok=True, parents=True)
 
 for key in results:
