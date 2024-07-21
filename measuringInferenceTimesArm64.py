@@ -80,7 +80,7 @@ allModels = modelNames.copy()
 for i in range(numModels):
   allModels.append(modelNames[i] + "_quant")
 
-n = 20
+n = 5
 
 for modelName in allModels:
   print(modelName)
