@@ -158,5 +158,3 @@ for key in results:
     plt.tight_layout()
 
     plt.savefig(f'./results/{key}.png')
-    # Show the plot
-    plt.show()
