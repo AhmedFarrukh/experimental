@@ -119,6 +119,7 @@ for modelName in allModels:
   results["Memory Init"].append((mean(memory_init), stdev(memory_init)))
   results["Memory Overall"].append((mean(memory_overall), stdev(memory_overall)))
 
+
 for i in range(len(allModels)):
     print(allModels[i])
     for key in results:
@@ -157,4 +158,4 @@ for key in results:
 
     plt.tight_layout()
 
-    plt.savefig(f'./results/{key}.png')
+    plt.savefig(f'/root/results/{key}.png')
