@@ -1,3 +1,4 @@
+import subprocess
 modelNames = ["MobileNet", "InceptionV3", "ResNet50", "ResNet101" , "ResNet152", "VGG16", "VGG19"]
 file = open("/root/results.txt", "w")
 
