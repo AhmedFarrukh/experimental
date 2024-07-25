@@ -6,7 +6,7 @@ for i in range(numModels):
   modelNames.append(modelNames[i] + "_quant")
 
 for modelName in modelNames:
-  file = open(f'/home/pi/DeepLearningEdgeComputing/results/{modelName}.txt', "w")
+  file = open(f'/home/pi/DeepLearningEdgeComputing/results/{modelName}.txt', "a")
   for i in range(10):
     outputOriginal = subprocess.check_output("/home/pi/DeepLearningEdgeComputing/benchmark/linux_aarch64_benchmark_model \
       --graph=/home/pi/DeepLearningEdgeComputing/tflite_models/" + modelName +".tflite"+" \
